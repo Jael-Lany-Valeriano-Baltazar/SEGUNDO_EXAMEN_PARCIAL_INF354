@@ -16,16 +16,13 @@ def evaluate_model(X, y_encoded, weights_input_hidden, weights_hidden_output):
     total_samples = len(X)
 
     for i in range(total_samples):
-        # Feedforward
         hidden_input = np.dot(X[i], weights_input_hidden)
         hidden_output = sigmoid(hidden_input)
         output_input = np.dot(hidden_output, weights_hidden_output)
         output = sigmoid(output_input)
-
         # Selecciona la clase con la mayor probabilidad
         predicted_class = np.argmax(output)
         true_class = np.argmax(y_encoded[i])
-
         # Compara la predicción con la clase verdadera
         if predicted_class == true_class:
             correct_predictions += 1
